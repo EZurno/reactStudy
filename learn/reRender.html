@@ -16,7 +16,9 @@
         // counter 를 default value, upCounter를 function으로 등록
         // upCounter는 counter를 수정해주는 함수
         function onClick() {
-          upCounter(counter + 1);
+          //upCounter(counter + 1);
+          upCounter((current) => current + 1);
+          // counter 값을 직접 가져오지 않고 current로 참조를 하여 안정성이 있음
         }
 
         return (
