@@ -10,6 +10,7 @@
       const h3 = React.createElement(
         "h3", // html tag name
         {
+          id: "h3",
           onMouseEnter: () => console.log("mouse enter"), // eventListener
         },
         "Hello World...!!!" // value
@@ -17,6 +18,10 @@
       const btn = React.createElement(
         "button",
         {
+          style: {
+            background: "black",
+            color: "white",
+          },
           onClick: () => console.log("button clicked"),
         },
         "button click"

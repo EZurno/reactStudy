@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div class="root"></div>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const root = document.querySelector(".root");
+
+      function App() {
+        // 자동 랜더링
+        let [counter, upCounter] = React.useState(0);
+        // useState(defaultValue) => console.log를 보면 [defaultValue, function]
+        // counter 를 default value, upCounter를 function으로 등록
+        // upCounter는 counter를 수정해주는 함수
+        function onClick() {
+          upCounter(counter + 1);
+        }
+
+        return (
+          <div>
+            <h3>Counter : {counter}</h3>
+            <button onClick={onClick}>Click me</button>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>
