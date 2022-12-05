@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const container = document.querySelector("#container");
+      function Apps() {
+        let [amount, setAmount] = React.useState(0);
+        let [flipped, setFlipped] = React.useState(false);
+
+        function reset() {
+          setAmount(0);
+        }
+
+        function onChange(event) {
+          setAmount(event.target.value);
+        }
+
+        function onFilp() {
+          onReset();
+          setFlipped((current) => !current);
+        }
+
+        function onReset() {
+          setAmount(0);
+        }
+
+        return (
+          <div>
+            <h3>Time Converter</h3>
+            <label htmlFor="min">minute</label>
+            <input
+              value={flipped ? amount * 60 : amount} // flipped 상태이면 amount * 60, false 시 amount
+              onChange={onChange}
+              id="min"
+              type="number"
+              placeholder="minute"
+              disabled={flipped}
+            />
+            <label htmlFor="hour">hour</label>
+            <input
+              value={flipped ? amount : Math.round(amount / 60)}
+              onChange={onChange}
+              id="hour"
+              type="number"
+              placeholder="hour"
+              disabled={!flipped}
+            />
+            <button id="flip" onClick={onFilp}>
+              flip
+            </button>
+            <button id="reset" onClick={onReset}>
+              reset
+            </button>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<Apps />, container);
+    </script>
+  </body>
+</html>
