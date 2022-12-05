@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!--development로 수정해서 jsx 맞는 문법으로-->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const container = document.querySelector("#container");
+
+      function Apps() {
+        const [minutes, setMinutes] = React.useState();
+        const [miles, setMiles] = React.useState();
+
+        function minClick(event) {
+          setMinutes(event.target.value);
+        }
+
+        function mileClick(event) {
+          setMiles(event.target.value);
+        }
+
+        return (
+          <div>
+            <h3>INPUT VALUES</h3>
+            <input
+              id="minutes"
+              placeholder="minutes"
+              type="number"
+              onChange={minClick}
+            ></input>
+            <label htmlFor="minutes"> HOURS</label>
+            <h4>{minutes * 60} MIN</h4>
+
+            <input
+              id="miles"
+              placeholder="miles"
+              type="number"
+              onChange={mileClick}
+            ></input>
+            <label htmlFor="miles">MILES</label>
+            <h4>{miles * 1.60934} KM</h4>
+          </div>
+        );
+      }
+
+      ReactDOM.render(<Apps />, container);
+    </script>
+  </body>
+</html>
