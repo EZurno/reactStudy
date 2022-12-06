@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROPS</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const container = document.querySelector("#container");
+
+      function Button(props) {
+        // shotcut 로 props 대신 {banana} 사용 가능
+        return (
+          <div>
+            <button>
+              {props.banana} {props.x}
+            </button>
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <Button banana="Save Change" x="0" />
+            <Button banana="Continue" x="1" />
+          </div>
+        ); // argument로 받는 값은 지정 가능
+      }
+
+      function App() {
+        const [value, setValue] = React.useState("save Changes");
+
+        function changeValue() {
+          setValue("Revert Changes");
+        }
+
+        return (
+          <div>
+            <Button banana={value} onClick={changeValue} />
+            <Button banana={value} />
+          </div> // custom component 속 onClick은 eventListener 가 아닌 props
+        );
+      }
+
+      ReactDOM.render(<App />, container);
+    </script>
+  </body>
+</html>

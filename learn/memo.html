@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PROPS</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      const container = document.querySelector("#container");
+
+      function Button({ text, onClick }) {
+        // shotcut 로 props 대신 {banana} 사용 가능
+        console.log(`${text} was changed.`);
+        return (
+          <div>
+            <button onClick={onClick}>{text}</button>
+          </div>
+        );
+      }
+
+      const MemorizedButton = React.memo(Button);
+      // continue의 value 값은 출력 되지 않게 하기 위해 memo 사용
+      // 이 후 custom component를 변경
+      // 부모 component 가 변경 될때 자식 component 도 함께 바뀌지 않게끔
+
+      function App() {
+        const [value, setValue] = React.useState("save Changes");
+
+        function changeValue() {
+          setValue("Revert Changes");
+        }
+
+        return (
+          <div>
+            <MemorizedButton text={value} onClick={changeValue} />
+            <MemorizedButton text="Continue" />
+          </div> // custom component 속 onClick은 eventListener 가 아닌 props
+        ); // function도 props 로 보낼 수 있음
+      }
+
+      ReactDOM.render(<App />, container);
+    </script>
+  </body>
+</html>
