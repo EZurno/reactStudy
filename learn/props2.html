@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+    <script type="text/babel">
+      const container = document.querySelector("#container");
+
+      function Button(props) {
+        return (
+          <button
+            style={{
+              background: "red",
+              fontSize: `${props.fontSize}px`,
+              color: "white",
+              borderRadius: "15px",
+              border: "none",
+            }}
+          >
+            {props.text}
+          </button>
+        );
+      }
+
+      Button.propTypes = {
+        text: PropTypes.string.isRequired, // isRequired 를 사용하면 필수적으로 필요한 변수
+        fontSize: PropTypes.number,
+      }; //Button 의 props의 type을 정해줄 수 있음 like TS
+
+      function App() {
+        return (
+          <div>
+            <Button text="Save Changes" fontSize={18} />
+            <Button text="Contiue" fontSize={14} />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, container);
+    </script>
+  </body>
+</html>
