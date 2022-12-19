@@ -31,6 +31,21 @@ function ToDoList() {
         ></input>
         <button>Add To Do</button>
       </form>
+      <ul>
+        {toDos.map((items, index) => (
+          <li key={index}>{items}</li>
+          /* <li> 는 고유 key 값을 입력해야 하므로
+            map의 argument 값을 받아 key값으로 사용
+           */
+        ))}
+      </ul>
+      {/* {toDos.map((items) => items.toUpperCase())} */}
+      {/* items로 index value 를 받아 upperCase 사용 */}
+      {/* {toDos.map(() => ":)")} */}
+      {/* 
+        toDos Array 내 index 의 값을 모두 수정 가능
+        ex) array.length 가 6 이면 6회 반복
+        */}
     </div>
   );
 }
