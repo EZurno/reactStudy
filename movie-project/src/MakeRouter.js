@@ -7,7 +7,9 @@ function MakeRouter() {
   return (
     <Router>
       <Switch>
-        <Route path="/movie">
+        <Route path="/movie/:id">
+          {/* :id => :를 사용함으로써
+         id 에 1, 2, 3 ... 같은 여러 숫자 사용가능 */}
           <Detail />
         </Route>
         <Route path="/">
